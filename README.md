@@ -14,6 +14,11 @@ The following API endpoints are  implemented in respective classes:
   - signout - "/user/signout" This endpoint is used to sign out from the Quora Application
   - userProfile - "/userprofile/{userId}" This endpoint is used to get the details of any user in the Quora Application
   - userDelete - "/admin/user/{userId}" This endpoint is used to delete a user from the Quora Application. Only an admin is authorized
+  - createQuestion - "/question/create" This endpoint is used to create question for an logged in user
+  - editQuestion - "/question/edit/{questionId}" This endpoint is used for editing a question by a logged in user
+  - deleteQuestion - "/question/delete/{questionId}" This endpoint is used for deleting a question by a question owner or admin
+  - getAllQuestionsByUser - "/all/{userId}" This endpoint is used all question by a user
+  
 
 
 You can also:
