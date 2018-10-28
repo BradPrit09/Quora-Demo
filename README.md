@@ -18,6 +18,10 @@ The following API endpoints are  implemented in respective classes:
   - editQuestion - "/question/edit/{questionId}" This endpoint is used for editing a question by a logged in user
   - deleteQuestion - "/question/delete/{questionId}" This endpoint is used for deleting a question by a question owner or admin
   - getAllQuestionsByUser - "/all/{userId}" This endpoint is used all question by a user
+  - createAnswer - "/question/{questionId}answer/create" This endpoint is used for creating an answer
+  - editAnswerContent - "/answer/edit/{answerId}" This endpoint is used for editing answercontent
+  - deleteAnswer - "/answer/delete/{answerId}" This endpoint is used for deleting answer
+  - getAllAnswersToQuestion - "/all/{questionId}" This endpoint is used for getting all answer to a specific question
   
 
 
