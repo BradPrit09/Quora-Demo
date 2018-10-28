@@ -40,12 +40,14 @@ public class AnswerController {
 
 
     /**
-     * @param answerRequest
-     * @param questionUuId
-     * @param authorization
-     * @return
-     * @throws AuthorizationFailedException
-     * @throws InvalidQuestionException
+     * Rest API endpoint method for creating an answer for a question
+     *
+     * @param answerRequest Answer request object
+     * @param questionUuId  question uuid object as String
+     * @param authorization access Token for user authorization
+     * @return ResponseEntity object with AsnwerReponse Object
+     * @throws AuthorizationFailedException exception thrown if user Authorization failed
+     * @throws InvalidQuestionException     thrown if question is invalid
      */
     @RequestMapping(method = RequestMethod.POST, path = "/question/{questionId}answer/create", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AnswerResponse> createAnswer(final AnswerRequest answerRequest, @PathVariable("questionId") final String questionUuId, @RequestHeader final String authorization) throws AuthorizationFailedException, InvalidQuestionException {
@@ -70,12 +72,14 @@ public class AnswerController {
 
 
     /**
-     * @param answerEditRequest
-     * @param answerUuId
-     * @param authorization
-     * @return
-     * @throws AuthorizationFailedException
-     * @throws AnswerNotFoundException
+     * Rest API endpoint method for editing an answer for a question
+     *
+     * @param answerEditRequest edit request
+     * @param answerUuId        answeruuid to be edited
+     * @param authorization     user uuid for authorization
+     * @return ResponseEntity class with AnswerEditResponse
+     * @throws AuthorizationFailedException exception thrown if user Authorization failed
+     * @throws AnswerNotFoundException      thrown if answer uuid is not found
      */
     @RequestMapping(method = RequestMethod.PUT, path = "/answer/edit/{answerId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AnswerEditResponse> editAnswerContent(AnswerEditRequest answerEditRequest, @PathVariable("answerId") final String answerUuId, @RequestHeader("authorization") final String authorization) throws AuthorizationFailedException, AnswerNotFoundException {
@@ -95,6 +99,16 @@ public class AnswerController {
     }
 
 
+    /**
+     * Rest API endpoiint fmethod for deleting a answer.
+     * Only and answer owner or an admin can delete this
+     *
+     * @param answerUuId    answeruuid string
+     * @param authorization acces token of user
+     * @return ResponseEntity object with AnswerDeleteResponse
+     * @throws AuthorizationFailedException exception thrown if user Authorization failed
+     * @throws AnswerNotFoundException      thrown if answer uuid is not found
+     */
     @RequestMapping(method = RequestMethod.DELETE, path = "/answer/delete/{answerId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AnswerDeleteResponse> deleteAnswer(@PathVariable("answerId") final String answerUuId, @RequestHeader("authorization") final String authorization) throws AuthorizationFailedException, AnswerNotFoundException {
         //Authorize the user if he has signed in properly
@@ -109,6 +123,16 @@ public class AnswerController {
     }
 
 
+    /**
+     * Rest API endpoint method for getting all answers for a specific question.
+     *
+     * @param questionId    question uuid String
+     * @param authorization accesstoken of the user
+     * @return ResponseEntity object with AnswerDetailsResponse object
+     * @throws AuthorizationFailedException exception thrown if user Authorization failed
+     * @throws InvalidQuestionException     thrown is question is invalid
+     * @throws AnswerNotFoundException      thrown if answer uuid is not found
+     */
     @RequestMapping(method = RequestMethod.GET, path = "/all/{questionId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AnswerDetailsResponse> getAllAnswersToQuestion(@PathVariable("questionId") final String questionId, @RequestHeader("authorization") final String authorization) throws AuthorizationFailedException, InvalidQuestionException, AnswerNotFoundException {
         //Authorize the user if he has signed in properly
