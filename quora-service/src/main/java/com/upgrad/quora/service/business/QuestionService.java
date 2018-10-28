@@ -128,5 +128,25 @@ public class QuestionService {
         questionDao.deleteQuestion(question);
     }
 
+    /**
+     * method used for getting question object for the specific question uuid
+     * Throws InvalidQuestionException if question is not found.
+     *
+     * @param questionUuId uuid of the question
+     * @return Question object
+     */
+    public Question getQuestionForUuId(String questionUuId) throws InvalidQuestionException {
+        Question question = questionDao.getQuestion(questionUuId);
+        if (question == null) {
+            throw new InvalidQuestionException("QUES-001", "The question entered is invalid");
+        } else {
+            return question;
+        }
+    }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> master
 
 }
