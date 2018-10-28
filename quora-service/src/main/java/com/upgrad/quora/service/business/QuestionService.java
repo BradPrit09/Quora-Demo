@@ -143,10 +143,4 @@ public class QuestionService {
             return question;
         }
     }
-<<<<<<< HEAD
-=======
-
-
->>>>>>> master
-
 }
